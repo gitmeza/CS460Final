@@ -35,8 +35,8 @@
 
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| _Start Node_ | _The route starts here and we need to find the shortest path to each relic and the exit_ |
+| _Relic Node_ | _We need to find the shortest path from each relic to other relics and the exit_ |
 
 ### Part 2b: Distance Storage
 
@@ -44,20 +44,21 @@
 
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | Nested Dictionary |
+| What the keys represent | Source node and destination node |
+| What the values represent | Minimum cost from source to destination |
+| Lookup time complexity | O(1) |
+| Why O(1) lookup is possible | Looking up on a dictionary results in constant time |
 
 ### Part 2c: Precomputation Complexity
 
 > State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** _k+1_
+- **Cost per run:** _O(m*logn)_
+- **Total complexity:** _O(k\*m\*logn)_
+- **Justification (one line):** _Running dijkstra for each k+1 nodes which is k relics and the start node,
+                                 we get the total of their sum which is O((k+1)mlogn) giving us O(kmlogn)._
 
 ---
 
