@@ -58,9 +58,12 @@ def select_sources(spawn, relics, exit_node):
     list[node]
         No duplicates. Order does not matter.
 
-    TODO
     """
-    pass
+    sources = set()
+    sources.add(spawn)
+    for r in relics:
+        sources.add(r)
+    return list(sources)
 
 
 def run_dijkstra(graph, source):
@@ -77,9 +80,31 @@ def run_dijkstra(graph, source):
         Minimum cost from source to every node in graph.
         Unreachable nodes map to float('inf').
 
-    TODO
     """
-    pass
+    # Initialise every distance to infinity, source costs 0
+    dist = {node: float('inf') for node in graph}
+    dist[source] = 0
+ 
+    heap = [(0, source)]
+ 
+    # Track which nodes have been settled
+    settled = set()
+ 
+    while heap:
+        current_dist, u = heapq.heappop(heap)
+ 
+        if u in settled:
+            continue
+        settled.add(u)
+ 
+        # Check each outgoing edge from u
+        for v, weight in graph[u]:
+            candidate = current_dist + weight
+            if candidate < dist.get(v, float('inf')):
+                dist[v] = candidate
+                heapq.heappush(heap, (candidate, v))
+ 
+    return dist
 
 
 def precompute_distances(graph, spawn, relics, exit_node):
@@ -97,9 +122,11 @@ def precompute_distances(graph, spawn, relics, exit_node):
         Nested structure supporting dist_table[u][v] lookups
         for every source u your design requires.
 
-    TODO
     """
-    pass
+    dist_table = {}
+    for source in select_sources(spawn, relics, exit_node):
+        dist_table[source] = run_dijkstra(graph, source)
+    return dist_table
 
 
 # =============================================================================
