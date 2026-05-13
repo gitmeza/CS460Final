@@ -32,9 +32,13 @@ def explain_problem():
         Your Part 1 README answers, written as a string.
         Must match what you wrote in README Part 1.
 
-    TODO
     """
-    return "TODO"
+    return( "Why a single shortest-path run from S is not enough:\n"
+        "A single shortest-path from S is not enough because the travel cost depends on which relic was visited last.\n"
+        "What decision remains after all inter-location costs are known:\n"
+        "After all inter-locaiton costs are known, we must find the most optimal order in which to visit each relic.\n"
+        "Why this requires a search over orders (one sentence):\n"
+        "We must search every possible order and select the one with the lowest total cost.\n")
 
 
 # =============================================================================
