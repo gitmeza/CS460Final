@@ -16,7 +16,7 @@
 > implement first, what parts you expect to be difficult, and how you plan to test.
 
 * I plan to implement run_dijkstra first and then precompute_distances. I expext implementing the correct
-* algorithm will be the most difficult and I plan to test as I go as I incorporate different components to the algorithm.
+  algorithm will be the most difficult and I plan to test as I go as I incorporate different components to the algorithm.
 
 ---
 
