@@ -73,29 +73,34 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  * When a node v is moved into S, the distance in dist[v] to that node from the source is already at its minimum.
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  * The best route found so far is stored in dist[u] and may the route may still be improved.
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  * S is empty, so the invariant over finalized nodes holds true. dist[souce] = 0 and all other nodes
+    have dist[u] = inf.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  * At each step, we get the unfinalized node with the smallest dist[u] and since travelling to a node
+    that is not settled gives dist[w] >= dist[u], it cannot be lower than dist[u]. Therefore, the invariant
+    is maintained.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  * When the algorithm ends, every node has been settled into S and the invariant states dist[v] is the shortest
+    path to each reachable node v and every other node is unreachable. Thus, the invariant is true at termination.
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Your answer here._
+* This matters for the route planner because if we do not connect the correct distances to the correct routing decisions,
+  the route planner may choose a route that is not actually optimal.
 
 ---
 
