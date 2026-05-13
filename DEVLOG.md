@@ -10,12 +10,13 @@
 
 ---
 
-## Entry 1 – [Date]: Initial Plan
+## Entry 1 – [05/12/2026]: Initial Plan
 
 > Required. Write this before writing any code. Describe your plan: what you will
 > implement first, what parts you expect to be difficult, and how you plan to test.
 
-_Your entry here._
+* I plan to implement run_dijkstra first and then precompute_distances. I expext implementing the correct
+* algorithm will be the most difficult and I plan to test as I go as I incorporate different components to the algorithm.
 
 ---
 
