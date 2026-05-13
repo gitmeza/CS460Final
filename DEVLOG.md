@@ -20,12 +20,13 @@
 
 ---
 
-## Entry 2 – [Date]: [Short description]
+## Entry 2 – [05/12/2026]: Starting Implementation
 
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
 
-_Your entry here._
+* I started implementing functions and algorithms into torchbearer.py. Primarily, I implemented the select_sources, run_dijkstra,
+  and precompute_distances functions.
 
 ---
 
