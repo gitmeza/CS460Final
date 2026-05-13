@@ -38,7 +38,8 @@ def explain_problem():
         "What decision remains after all inter-location costs are known:\n"
         "After all inter-locaiton costs are known, we must find the most optimal order in which to visit each relic.\n"
         "Why this requires a search over orders (one sentence):\n"
-        "We must search every possible order and select the one with the lowest total cost.\n")
+        "We must search every possible order and select the one with the lowest total cost.\n"
+    )
 
 
 # =============================================================================
@@ -141,9 +142,29 @@ def dijkstra_invariant_check():
         Your Part 3 README answers, written as a string.
         Must match what you wrote in README Part 3.
 
-    TODO
     """
-    return "TODO"
+    return(
+        "Part 3: Algorithm Correctness\n"
+        "Part 3a: What the Invariant Means\n"
+        "For nodes already finalized (in S):\n"
+        "When a node v is moved into S, the distance in dist[v] to that node from the source is already at its minimum.\n\n"
+        
+        "For nodes not yet finalized (not in S):\n"
+        "The best route found so far is stored in dist[u] and may the route may still be improved.\n\n"
+
+        "Part 3b: Why Each Phase Holds\n"
+        "Initialization : why the invariant holds before iteration 1:\n"
+        "S is empty, so the invariant over finalized nodes holds true. dist[souce] = 0 and all other nodes have dist[u] = inf.\n\n"
+
+        "Maintenance : why finalizing the min-dist node is always correct:\n"
+        "At each step, we get the unfinalized node with the smallest dist[u] and since travelling to a node that is not settled gives dist[w] >= dist[u], it cannot be lower than dist[u]. Therefore, the invariant is maintained.\n\n"
+
+        "Termination : what the invariant guarantees when the algorithm ends:\n"
+        "When the algorithm ends, every node has been settled into S and the invariant states dist[v] is the shortest path to each reachable node v and every other node is unreachable. Thus, the invariant is true at termination.\n\n"
+
+        "Part 3c: Why This Matters for the Route Planner\n"
+        "This matters for the route planner because if we do not connect the correct distances to the correct routing decisions, the route planner may choose a route that is not actually optimal.\n"
+    )
 
 
 # =============================================================================
