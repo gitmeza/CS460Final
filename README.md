@@ -111,17 +111,20 @@
 > State the failure mode. Then give a concrete counter-example using specific node names
 > or costs (you may use the illustration example from the spec). Three to five bullets.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **The failure mode:** If we visit the closest relic first, then greedy only takes the minimum cost at each step without
+  considering how choosing an alternate relic could lead to a better solution.
+- **Counter-example setup:** Suppose S->B costs 4, S->C costs 1, S->D costs 2, B->C costs 100, B->D costs 1, B->T costs 1, C->B costs 1,
+  C->D costs 100, C->T costs 1, D->B costs 1, D->C costs 1, and D->T costs 100.
+- **What greedy picks:** Greedy would go to C first, S->C->B->D->T so total cost is 103.
+- **What optimal picks:** Optimal picks B first, S->B->D->C->T so total cost is 7.
+- **Why greedy loses:** Greedy loses because it prioritizes the cheapest path first, which ends up hurting the entire route since T becomes
+  expensive with this choice.
 
 ### What the Algorithm Must Explore
 
 > One bullet. Must use the word "order."
 
-- _Your answer here._
+- The algorithm must explore every possible order of traversal through the relics to determine which order is the most optimal.
 
 ---
 
