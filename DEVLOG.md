@@ -3,17 +3,9 @@
 **Student Name:** Nathan Meza
 **Student ID:** 132001594
 
-> Instructions: Write at least four dated entries. Required entry types are marked below.
-> Two to five sentences per entry is sufficient. Write entries as you go, not all in one
-> sitting. Graders check that entries reflect genuine work across multiple sessions.
-> Delete all blockquotes before submitting.
-
 ---
 
 ## Entry 1 – [05/12/2026]: Initial Plan
-
-> Required. Write this before writing any code. Describe your plan: what you will
-> implement first, what parts you expect to be difficult, and how you plan to test.
 
 * I plan to implement run_dijkstra first and then precompute_distances. I expext implementing the correct
   algorithm will be the most difficult and I plan to test as I go as I incorporate different components to the algorithm.
@@ -22,17 +14,15 @@
 
 ## Entry 2 – [05/12/2026]: Starting Implementation
 
-> Required. At least one entry must describe a bug, wrong assumption, or design change
-> you encountered. Describe what went wrong and how you resolved it.
-
 * I started implementing functions and algorithms into torchbearer.py. Primarily, I implemented the select_sources, run_dijkstra,
   and precompute_distances functions.
 
 ---
 
-## Entry 3 – [Date]: [Short description]
+## Entry 3 – [05/13/2026]: More Implementation and Answering README
 
-_Your entry here._
+* I answered and implemented parts 3 and 4 of the assignment. I still need to write a working solve(), likely after I finish implementing
+  the remaining functions.
 
 ---
 
