@@ -31,7 +31,8 @@ def explain_problem():
     str
         Your Part 1 README answers, written as a string.
         Must match what you wrote in README Part 1.
-
+    
+    TODO
     """
     return( "Why a single shortest-path run from S is not enough:\n"
         "A single shortest-path from S is not enough because the travel cost depends on which relic was visited last.\n"
@@ -59,6 +60,7 @@ def select_sources(spawn, relics, exit_node):
     list[node]
         No duplicates. Order does not matter.
 
+    TODO
     """
     sources = set()
     sources.add(spawn)
@@ -81,6 +83,7 @@ def run_dijkstra(graph, source):
         Minimum cost from source to every node in graph.
         Unreachable nodes map to float('inf').
 
+    TODO
     """
     # Initialise every distance to infinity, source costs 0
     dist = {node: float('inf') for node in graph}
@@ -123,6 +126,7 @@ def precompute_distances(graph, spawn, relics, exit_node):
         Nested structure supporting dist_table[u][v] lookups
         for every source u your design requires.
 
+    TODO
     """
     dist_table = {}
     for source in select_sources(spawn, relics, exit_node):
@@ -142,6 +146,7 @@ def dijkstra_invariant_check():
         Your Part 3 README answers, written as a string.
         Must match what you wrote in README Part 3.
 
+    TODO
     """
     return(
         "Part 3: Algorithm Correctness\n"
@@ -179,6 +184,7 @@ def explain_search():
         Your Part 4 README answers, written as a string.
         Must match what you wrote in README Part 4.
 
+    TODO
     """
     return(
         "Part 4: Search Design\n"
@@ -222,7 +228,31 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    # No more relics, so exit
+    if not relics:
+        direct = dist_table.get(spawn, {}).get(exit_node, float('inf'))
+        if direct < float('inf'):
+            return (direct, [])
+        return (float('inf'), [])
+ 
+    # Best so far
+    best = [float('inf'), []]
+ 
+    relics_remaining = set(relics)
+ 
+    _explore(
+        dist_table=dist_table,
+        current_loc=spawn,
+        relics_remaining=relics_remaining,
+        relics_visited_order=[],
+        cost_so_far=0.0,
+        exit_node=exit_node,
+        best=best
+    )
+ 
+    if best[0] == float('inf'):
+        return (float('inf'), [])
+    return (best[0], best[1])
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -254,7 +284,61 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+    
+    # If the cost so far is more than or equal to the best solution, then we prune.
+    # This is safe because we are not going to miss out on a better solution by pruning 
+    # since the cost is the same or worse than the best solution.
+    if cost_so_far >= best[0]:
+        return
+
+    # If the cost so far plus the cheapest cost from the next relic to the exit 
+    # is more than or equal to the best solution, then we also prune.
+    # This is safe because we are pruning a route that doesn't beat the best solution.
+    if relics_remaining:
+        min_additional = float('inf')
+        src_dist = dist_table.get(current_loc, {})
+        for r in relics_remaining:
+            # Cost from current position to relic r
+            to_r = src_dist.get(r, float('inf'))
+            # Cheapest cost from relic r to the exit
+            from_r = dist_table.get(r, {}).get(exit_node, float('inf'))
+            leg = to_r + from_r
+            if leg < min_additional:
+                min_additional = leg
+        if cost_so_far + min_additional >= best[0]:
+            return
+
+    if not relics_remaining:
+        cost_to_exit = dist_table.get(current_loc, {}).get(exit_node, float('inf'))
+        total = cost_so_far + cost_to_exit
+        if total < best[0]:
+            best[0] = total
+            best[1] = list(relics_visited_order)
+        return
+
+    src_dist = dist_table.get(current_loc, {})
+    for next_relic in list(relics_remaining):
+        travel_cost = src_dist.get(next_relic, float('inf'))
+        if travel_cost == float('inf'):
+            # If next relic is unreachable, then skip
+            continue
+ 
+        new_cost = cost_so_far + travel_cost
+        relics_remaining.remove(next_relic)
+        relics_visited_order.append(next_relic)
+ 
+        _explore(
+            dist_table=dist_table,
+            current_loc=next_relic,
+            relics_remaining=relics_remaining,
+            relics_visited_order=relics_visited_order,
+            cost_so_far=new_cost,
+            exit_node=exit_node,
+            best=best
+        )
+
+        relics_visited_order.pop()
+        relics_remaining.add(next_relic)
 
 
 # =============================================================================
