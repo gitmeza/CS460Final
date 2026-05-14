@@ -179,9 +179,23 @@ def explain_search():
         Your Part 4 README answers, written as a string.
         Must match what you wrote in README Part 4.
 
-    TODO
     """
-    return "TODO"
+    return(
+        "Part 4: Search Design\n"
+        "Why Greedy Fails\n"
+        "The failure mode: If we visit the closest relic first, then greedy only takes the minimum cost at each step without considering how choosing an alternate relic could lead to a better solution.\n\n"
+        
+        "Counter-example setup: Suppose S->B costs 4, S->C costs 1, S->D costs 2, B->C costs 100, B->D costs 1, B->T costs 1, C->B costs 1, C->D costs 100, C->T costs 1, D->B costs 1, D->C costs 1, and D->T costs 100.\n\n"
+        
+        "What greedy picks: Greedy would go to C first, S->C->B->D->T so total cost is 103.\n\n"
+        
+        "What optimal picks: Optimal picks B first, S->B->D->C->T so total cost is 7.\n\n"
+        
+        "Why greedy loses: Greedy loses because it prioritizes the cheapest path first, which ends up hurting the entire route since T becomes expensive with this choice.\n\n"
+        
+        "What the Algorithm Must Explore\n"
+        "The algorithm must explore every possible order of traversal through the relics to determine which order is the most optimal.\n"
+    )
 
 
 # =============================================================================
