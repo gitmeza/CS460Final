@@ -130,30 +130,23 @@
 
 ### Part 6a: Best-So-Far Tracking
 
-> Three bullets.
-
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** _The route with the cheapest cost so far is tracked._
+- **When it is used:** _It is used at the start of every recursive call to explore._
+- **What it allows the algorithm to skip:** _It allows the algorithm to skip partial routes that won't produce a better route._
 
 ### Part 6b: Lower Bound Estimation
 
-> Three bullets.
-
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** _The current node, set of remaining relic nodes, and distances from every source node._
+- **What the lower bound accounts for:** _The lowest possible cost to reach any remaining relic plus the cost to the exit._
+- **Why it never overestimates:** _It never overestimates because it takes the minimum of all remaining relics._
 
 ### Part 6c: Pruning Correctness
 
-> One to two bullets. Explain why pruning is safe.
-
-- _Your answer here._
+- Pruning is safe because it only prunes routes that would cost at least as much as the best solution found so far.
+  Therefore, it only leaves routes that could be lower in cost than the best solution so far.
 
 ---
 
 ## References
 
-> Bullet list. If none beyond lecture notes, write that.
-
-- _Your references here._
+- _Lecture notes and a few refresher youtube videos._
