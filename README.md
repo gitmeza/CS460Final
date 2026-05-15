@@ -4,17 +4,9 @@
 **Student ID:** 132001594
 **Course:** CS 460 – Algorithms | Spring 2026
 
-> This README is your project documentation. Write it the way a developer would document
-> their design decisions , bullet points, brief justifications, and concrete examples where
-> required. You are not writing an essay. You are explaining what you built and why you built
-> it that way. Delete all blockquotes like this one before submitting.
-
 ---
 
 ## Part 1: Problem Analysis
-
-> Document why this problem is not just a shortest-path problem. Three bullet points, one
-> per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
   * A single shortest-path from S is not enough because the travel cost depends on which relic was visited last.
@@ -31,16 +23,12 @@
 
 ### Part 2a: Source Selection
 
-> List the source node types as a bullet list. For each, one-line reason.
-
 | Source Node Type | Why it is a source |
 |---|---|
 | _Start Node_ | _The route starts here and we need to find the shortest path to each relic and the exit_ |
 | _Relic Node_ | _We need to find the shortest path from each relic to other relics and the exit_ |
 
 ### Part 2b: Distance Storage
-
-> Fill in the table. No prose required.
 
 | Property | Your answer |
 |---|---|
@@ -52,8 +40,6 @@
 
 ### Part 2c: Precomputation Complexity
 
-> State the total complexity and show the arithmetic. Two to three lines max.
-
 - **Number of Dijkstra runs:** _k+1_
 - **Cost per run:** _O(m*logn)_
 - **Total complexity:** _O(k\*m\*logn)_
@@ -64,13 +50,7 @@
 
 ## Part 3: Algorithm Correctness
 
-> Document your understanding of why Dijkstra produces correct distances.
-> Bullet points and short sentences throughout. No paragraphs.
-
 ### Part 3a: What the Invariant Means
-
-> Two bullets: one for finalized nodes, one for non-finalized nodes.
-> Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
   * When a node v is moved into S, the distance in dist[v] to that node from the source is already at its minimum.
@@ -80,24 +60,20 @@
 
 ### Part 3b: Why Each Phase Holds
 
-> One to two bullets per phase. Maintenance must mention nonnegative edge weights.
-
 - **Initialization : why the invariant holds before iteration 1:**
   * S is empty, so the invariant over finalized nodes holds true. dist[souce] = 0 and all other nodes
     have dist[u] = inf.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
   * At each step, we get the unfinalized node with the smallest dist[u] and since travelling to a node
-    that is not settled gives dist[w] >= dist[u], it cannot be lower than dist[u]. Therefore, the invariant
-    is maintained.
+    that is not settled gives dist[w] >= dist[u], adding more nonnegative edges cannot be lower than dist[u].
+    Therefore, the invariant is maintained.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
   * When the algorithm ends, every node has been settled into S and the invariant states dist[v] is the shortest
     path to each reachable node v and every other node is unreachable. Thus, the invariant is true at termination.
 
 ### Part 3c: Why This Matters for the Route Planner
-
-> One sentence connecting correct distances to correct routing decisions.
 
 * This matters for the route planner because if we do not connect the correct distances to the correct routing decisions,
   the route planner may choose a route that is not actually optimal.
@@ -107,9 +83,6 @@
 ## Part 4: Search Design
 
 ### Why Greedy Fails
-
-> State the failure mode. Then give a concrete counter-example using specific node names
-> or costs (you may use the illustration example from the spec). Three to five bullets.
 
 - **The failure mode:** If we visit the closest relic first, then greedy only takes the minimum cost at each step without
   considering how choosing an alternate relic could lead to a better solution.
@@ -122,8 +95,6 @@
 
 ### What the Algorithm Must Explore
 
-> One bullet. Must use the word "order."
-
 - The algorithm must explore every possible order of traversal through the relics to determine which order is the most optimal.
 
 ---
@@ -132,33 +103,26 @@
 
 ### Part 5a: State Representation
 
-> Document the three components of your search state as a table.
-> Variable names here must match exactly what you use in torchbearer.py.
-
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | current_loc | node | currently occupied node |
+| Relics already collected | relics_remaining | set[node] | set of relics remaining |
+| Fuel cost so far | cost_so_far | float | cost accumulated so far on route |
 
 ### Part 5b: Data Structure for Visited Relics
 
-> Fill in the table.
-
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | a hash set |
+| Operation: check if relic already collected | Time complexity: O(1) |
+| Operation: mark a relic as collected | Time complexity: O(1) |
+| Operation: unmark a relic (backtrack) | Time complexity: O(1) |
+| Why this structure fits | a hash set allows for fast lookups and giving O(1) time complexity |
 
 ### Part 5c: Worst-Case Search Space
 
-> Two bullets.
-
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** _O(k!)_
+- **Why:** _In the worst case, the algorithm tries every possible order of k relic nodes giving us O(k!)._
 
 ---
 
