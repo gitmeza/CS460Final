@@ -26,27 +26,24 @@
 
 ---
 
-## Entry 4 – [Date]: Post-Implementation Reflection
+## Entry 4 – [05/14/2026]: Post-Implementation Reflection
 
-> Required. Written after your implementation is complete. Describe what you would
-> change or improve given more time.
-
-_Your entry here._
+* I finished implementing every function in torchbearer.py and implemented a working solve() and made sure all tests were passing. I would
+  probably try to find alternate ways of solving this problem using different data structures and a language other than python. Perhaps write
+  my own data structures for an additional challenge if given enough time.
 
 ---
 
-## Final Entry – [Date]: Time Estimate
-
-> Required. Estimate minutes spent per part. Honesty is expected; accuracy is not graded.
+## Final Entry – [05/14/2026]: Time Estimate
 
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | |
-| Part 2: Precomputation Design | |
-| Part 3: Algorithm Correctness | |
-| Part 4: Search Design | |
-| Part 5: State and Search Space | |
-| Part 6: Pruning | |
-| Part 7: Implementation | |
-| README and DEVLOG writing | |
-| **Total** | |
+| Part 1: Problem Analysis | 30 mins |
+| Part 2: Precomputation Design | 1 hour |
+| Part 3: Algorithm Correctness | 1 hour |
+| Part 4: Search Design | 30 mins |
+| Part 5: State and Search Space | 1 hour |
+| Part 6: Pruning | 1 hour|
+| Part 7: Implementation | 3 hours |
+| README and DEVLOG writing | 1 hour |
+| **Total** | 9 hours |
